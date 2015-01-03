@@ -13,12 +13,9 @@
         <h1>Produtos</h1>
     </div>
     <p class="lead">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nisl ut metus scelerisque elementum eu quis ligula. Integer quis elementum urna, at blandit nulla. Ut faucibus nulla eget lacus imperdiet, nec venenatis mi sodales. Mauris a felis a enim molestie accumsan. Aliquam sed lacus in diam venenatis tincidunt a ac quam. Aenean bibendum sapien eu velit maximus cursus. Donec nibh ligula, euismod porttitor vulputate eu, fringilla eu nisi. Praesent vel tincidunt ligula, eget rhoncus mi. Ut gravida ligula a ligula tristique, in semper lectus vehicula. Aliquam eu scelerisque nibh, bibendum tempor justo. Nam ornare posuere ex. Praesent dignissim dignissim porta.
+        Integer non dui nulla. Vestibulum eu porttitor elit, laoreet feugiat turpis. Quisque fermentum ante risus, eget ornare orci laoreet in. Nam vestibulum sem augue, eget dignissim velit dignissim vel. Praesent est eros, mollis non ornare id, efficitur sit amet nisi. Pellentesque augue nisl, hendrerit sed volutpat nec, tempus quis magna. Maecenas feugiat imperdiet augue in pretium. Vivamus augue lectus, tincidunt et pulvinar vel, blandit ac velit. Integer a scelerisque ipsum, molestie ultrices orci. Etiam lacinia molestie elit at maximus. Duis a quam interdum, dapibus urna non, dignissim nisi. Maecenas viverra nunc vitae gravida ultricies. Sed efficitur, diam ac ultrices accumsan, urna risus pretium mi, vel porta odio dui id nibh. Mauris egestas erat est, vel ultricies erat egestas a. Cras rhoncus iaculis tortor, a rhoncus purus mattis sit amet.
     </p>
 
-    <p class="lead">
-        Donec congue sapien id ornare laoreet. Praesent viverra ante non fringilla rhoncus. Suspendisse at lacus quam. Vestibulum iaculis dui a lacus iaculis imperdiet. Integer varius euismod dictum. Curabitur pellentesque purus bibendum nibh ultricies, vitae consequat felis posuere. Donec gravida massa felis, eget iaculis nunc tincidunt et. Donec sed elit nec velit condimentum facilisis vitae quis nisi. Donec in diam egestas, rutrum urna id, euismod purus. Suspendisse potenti. Sed iaculis ut purus sed sagittis. Etiam molestie ornare turpis, quis dignissim mi ullamcorper vel. Mauris feugiat congue nibh at gravida. Pellentesque gravida tincidunt maximus.
-    </p>
 
 
 </div>

@@ -10,27 +10,41 @@
             <h1>Informe os dados abaixo!</h1>
         </div>
 
-        <form action="resultado.php"  method="POST">
-            <p>
-                <input type="text" name="nome" size="40" value="" placeholder="Nome" />
-            </p>
+        <form action="resultado.php"  method="POST" class="form-horizontal">
 
-            <p>
-                <input type="email" name="email" size="40" value=""  placeholder="Email"/>
-            </p>
+            <div class="form-group">
+                <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nome" id="inputNome" placeholder="Nome" required>
+                </div>
+            </div>
 
-            <p>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email" required>
+                </div>
+            </div>
 
-                <input type="text" name="assunto" size="40" value="" placeholder="Assunto"/>
-            </p>
+            <div class="form-group">
+                <label for="inputAssunto" class="col-sm-2 control-label">Assunto</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="assunto" id="inputAssunto" placeholder="Assunto" required>
+                </div>
+            </div>
 
-            <p>
-                <textarea name="mensagem" value="" placeholder="Mensagem" style="margin: 0px; width: 321px; height: 197px;" ></textarea>
-            </p>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Mensagem</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="mensagem" rows="3" required></textarea>
+                </div>
+            </div>
 
-            <p>
-                <input name="enviar" type="submit" value="Enviar" />
-            </p>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="enviar" class="btn btn-default">Enviar</button>
+                </div>
+            </div>
 
         </form>
     </div>
