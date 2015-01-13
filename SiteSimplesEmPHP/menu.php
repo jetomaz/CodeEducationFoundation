@@ -1,8 +1,6 @@
 <?php
 if(isset($_GET['menu'])){
     $menu = $_GET['menu'];
-}else{
-    $menu=0;
 }
 ?>
 

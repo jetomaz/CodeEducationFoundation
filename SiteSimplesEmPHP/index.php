@@ -5,34 +5,50 @@
  * os casos de tentativa de acesso, fiz tambem os acertos que ficaram pendentes
  * da primeira parte do projeto
  *
+ * 12-01-2014
+ * Ola Wesley, eu nunca trabalhei com rotas assim na mão,
+ * sempre trabalhei com menu simples chamando arquivos .php
+ * fiz da forma que entendi, espero que de certo. att.  Eduardo
+ *
  */
 
 // função para validar as rotas
-function ValidaRotas( $param) {
-
-    $flag = file_exists($param[1].'php');
-    if($flag=='FALSE'){
-        header("location:404.php");
-    }
+function ValidaRotas($param) {
 
     // se o arquivo existe valida as rotas
-    $rotasValidas = array("contato","empresa","produtos","servicos");
+    $rotasValidas = array("index","contato","empresa","produtos","servicos","");
 
     if( in_array( $param[1], $rotasValidas)) {
         if ($param[1] == 'empresa') {
-            header("location:empresa.php?menu=2");
+            $menu=2;
+            require_once("empresa.php");
         }
         if ($param[1] == 'produtos') {
-            header("location:produtos.php?menu=3");
+            $menu=3;
+            require_once("produtos.php");
         }
         if ($param[1] == 'servicos') {
-            header("location:servicos.php?menu=4");
+            $menu=4;
+            include("servicos.php");
         }
         if ($param[1] == 'contato') {
-            header("location:contato.php?menu=5");
+            $menu=5;
+            require_once("contato.php");
+        }
+        if ($param[1] == 'index' || $param[1] == '') {
+            // incluindo o cabecalho
+            require_once("cabecalho.php");
+            // incluindo o menu
+            $menu=1;
+            require_once("menu.php");
+            // incluindo o conteudo
+            require_once("conteudo.php");
+            // incluindo o rodape
+            require_once("rodape.php");
         }
     }else{
-        header("location:404.php");
+        $menu=1;
+        require_once("404.php");
     }
 
 }
@@ -41,23 +57,14 @@ $dados_url  = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])
 $enderecoDigitado = explode('/',$dados_url['path'],2);
 $enderecoDigitado[1] = str_replace('.php', '', $enderecoDigitado[1]);
 
-// se for index ou se nao tiver parametro nem valida ele ja abre o index.php
-if($enderecoDigitado[1]!='index' && $enderecoDigitado[1]!=''){
-    ValidaRotas($enderecoDigitado);
-}
+ValidaRotas($enderecoDigitado);
+
 ?>
 
-<!-- incluindo o cabecalho -->
-<?php require_once("cabecalho.php"); ?>
 
-<!-- incluindo o menu -->
-<?php  require_once("menu.php");  ?>
 
-<!-- incluindo o conteudo -->
-<?php  require_once("conteudo.php");  ?>
 
-<!-- incluindo o rodape -->
-<?php require_once("rodape.php"); ?>
+
 
 
 
