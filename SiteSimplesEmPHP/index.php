@@ -75,7 +75,6 @@ function ValidaRotas($param) {
         include("/css" . $requestURI);
         die();
     } else {
-
         // criando a rota
         $rota = "/".$param[1]; //$requestURI;
 
@@ -83,29 +82,20 @@ function ValidaRotas($param) {
             $param[1]="index";
         }
 
-        if (!(is_file($param[1] . ".php"))) {
-            $rota="";
-            http_response_code(404);
-            require_once("404.php");
-        }elseif($rota!=$requestURI){
-            $rota="";
-            http_response_code(404);
-            require_once("404.php");
-        }else {
-            // se o arquivo existe valida as rotas
-            $rotasValidas = array("index", "contato", "empresa", "produtos", "servicos", "","resultado");
+        $rotasValidas = array("index", "contato", "empresa", "produtos", "servicos");
 
-            if (in_array($param[1], $rotasValidas)) {
-                if ($param[1] == 'index' || $param[1] == '') {
-                    require_once("indexMontada.php");
-                } else {
-                    require_once($param[1] . ".php");
-                }
-            } else {
-                http_response_code(404);
-                require_once("404.php");
-            }
+        if (!(is_file($param[1] . ".php")) OR $rota!=$requestURI OR !in_array($param[1], $rotasValidas)) {
+            http_response_code(404);
+            require_once("404.php");
+            die();
         }
+
+        if($param[1]=="index"){
+            require_once("indexMontada.php");
+        }else{
+            require_once($param[1] . ".php");
+        }
+
     }
 
 }
