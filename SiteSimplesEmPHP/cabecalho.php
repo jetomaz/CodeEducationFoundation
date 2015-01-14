@@ -11,10 +11,13 @@
     <title>Trilhando o Caminho com PHP - Site Simples</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--     <link href="dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+        <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -10,7 +10,8 @@
             <h1>Informe os dados abaixo!</h1>
         </div>
 
-        <form action="resultado.php"  method="POST" class="form-horizontal">
+        <div class="col-sm-6">
+        <form action="/contato"  method="POST" class="form-horizontal">
 
             <div class="form-group">
                 <label for="inputNome" class="col-sm-2 control-label">Nome</label>
@@ -48,6 +49,46 @@
 
         </form>
     </div>
+    <div class="col-sm-6">
+
+        <?php
+        if (isset($_POST["nome"])) {
+            $error = false;
+            $errorMessage = "";
+            /*if (strlen(trim($_POST["nome"])) < 3 || strlen(trim($_POST["nome"]) > 50)) {
+                $errorMessage .= "Nome deve ter entre 3 e 50 caracteres.<br />";
+                $error = true;
+            }*/
+            if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                $errorMessage .= "Email inválido.<br />";
+                $error = true;
+            }
+            /*if (strlen(trim($_POST["assunto"])) < 3 || strlen(trim($_POST["assunto"]) > 30)) {
+                $errorMessage .= "Assunto deve ter entre 3 e 30 caracteres.<br />";
+                $error = true;
+            }*/
+            /*if (strlen(trim($_POST["mensagem"])) < 5) {
+                $errorMessage .= "Mensagem muito curta. Mínimo de 5 caracteres";
+                $error = true;
+            }*/
+            if (!$error) {
+                echo '<div class="alert alert-success">';
+                echo '<h2>Dados enviados com sucesso!</h2>';
+                echo "<p>Nome: {$_POST['nome']}<br />";
+                echo "Email: {$_POST['email']}<br />";
+                echo "Assunto: {$_POST['assunto']}<br />";
+                echo "Mensagem: {$_POST['mensagem']}</p>";
+                echo "</div>";
+            } else {
+                echo '<div class="alert alert-danger">';
+                echo '<h2>Erro(s) Encontrado(s)!</h2>';
+                echo $errorMessage;
+                echo "</div>";
+            }
+        }
+        ?>
+    </div>
+</div>
 </body>
 
 <!-- incluindo o rodape -->

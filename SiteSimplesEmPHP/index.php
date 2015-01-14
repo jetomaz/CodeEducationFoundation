@@ -1,4 +1,5 @@
 <?php
+require_once("cabecalho.php");
 /*
  * Ola Wesley, eu montei as rotas da forma que eu entendi, validando
  * com rotas registradas em um array, porem não sei se consegui cobrir todos
@@ -27,53 +28,84 @@
  *
  * Eduardo
  *
+ *
+ * 14/01/2014
+ *
+ * Boa tarde!
+ *
+ * Pessoal muito obrigado pela ajuda, agora sim entendi o que precisava ser feito, e entendi
+ * tambem que esse procedimento vai ser fundamental na hora de montar url amigaveis, peço desculpas
+ * por ter fica aflito mas assim são as pessoal, tenho que melhorar nisso tambem :)
+ * Acabei usando a minha logica mesmo com a ajuda de voces e fiz algumas adequações,
+ * espero que tenha ficado satisfatorio, Muito Obrigado!
+ * ps: Eu testei forçando a rota pelo index.php com -- php -S localhost:8001 index.php
+ *
+ * Att.
+ *
+ * Eduardo
  */
 
 // função para validar as rotas
 function ValidaRotas($param) {
 
-    if($param[1]==""){
-        $param[1]="index";
-    }
+    $requestURI = $_SERVER["REQUEST_URI"];
+    if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $requestURI)) {
+        $ext = substr($requestURI, -3, 3);
+        switch ($ext)
+        {
+            case "css";
+                $ctype = "text/css";
+                break;
+            case "js";
+                $ctype = "application/javascript";
+                break;
+            case "gif":
+                $ctype="image/gif";
+                break;
+            case "png":
+                $ctype="image/png";
+                break;
+            case "jpeg":
+            case "jpg":
+                $ctype="image/jpg";
+                break;
+            default:
+        }
+        header("content-type: " . $ctype);
+        include("/css" . $requestURI);
+        die();
+    } else {
 
-    if(!(is_file($param[1].".php"))){
-        header("HTTP/1.0 404 Not Found");
-        echo "deveria ter ido mais nao rediciona para lugar algum";
-    }
+        // criando a rota
+        $rota = "/".$param[1]; //$requestURI;
 
-    // se o arquivo existe valida as rotas
-    $rotasValidas = array("index","contato","empresa","produtos","servicos","");
+        if($param[1]==""){
+            $param[1]="index";
+        }
 
-    if( in_array( $param[1], $rotasValidas)) {
-        if ($param[1] == 'empresa') {
-            $menu=2;
-            require_once("empresa.php");
+        if (!(is_file($param[1] . ".php"))) {
+            $rota="";
+            http_response_code(404);
+            require_once("404.php");
+        }elseif($rota!=$requestURI){
+            $rota="";
+            http_response_code(404);
+            require_once("404.php");
+        }else {
+            // se o arquivo existe valida as rotas
+            $rotasValidas = array("index", "contato", "empresa", "produtos", "servicos", "","resultado");
+
+            if (in_array($param[1], $rotasValidas)) {
+                if ($param[1] == 'index' || $param[1] == '') {
+                    require_once("indexMontada.php");
+                } else {
+                    require_once($param[1] . ".php");
+                }
+            } else {
+                http_response_code(404);
+                require_once("404.php");
+            }
         }
-        if ($param[1] == 'produtos') {
-            $menu=3;
-            require_once("produtos.php");
-        }
-        if ($param[1] == 'servicos') {
-            $menu=4;
-            include("servicos.php");
-        }
-        if ($param[1] == 'contato') {
-            $menu=5;
-            require_once("contato.php");
-        }
-        if ($param[1] == 'index' || $param[1] == '') {
-            // incluindo o cabecalho
-            require_once("cabecalho.php");
-            // incluindo o menu
-            $menu=1;
-            require_once("menu.php");
-            // incluindo o conteudo
-            require_once("conteudo.php");
-            // incluindo o rodape
-            require_once("rodape.php");
-        }
-    }else{
-        http_response_code(404);
     }
 
 }
