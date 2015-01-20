@@ -1,4 +1,14 @@
 <?php
+$dados_url  = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$enderecoDigitado = explode('/',$dados_url['path'],2);
+$enderecoDigitado[1] = str_replace('.php', '', $enderecoDigitado[1]);
+
+if(!(is_file($enderecoDigitado[1].".php"))){
+    header("HTTP/1.0 404 Not Found");
+}
+
+ValidaRotas($enderecoDigitado);
+
 /*
  * Ola Wesley, eu montei as rotas da forma que eu entendi, validando
  * com rotas registradas em um array, porem não sei se consegui cobrir todos
@@ -35,12 +45,6 @@ function ValidaRotas($param) {
     if($param[1]==""){
         $param[1]="index";
     }
-
-    if(!(is_file($param[1].".php"))){
-        header("HTTP/1.0 404 Not Found");
-        echo "deveria ter ido mais nao rediciona para lugar algum";
-    }
-
     // se o arquivo existe valida as rotas
     $rotasValidas = array("index","contato","empresa","produtos","servicos","");
 
@@ -77,11 +81,4 @@ function ValidaRotas($param) {
     }
 
 }
-
-$dados_url  = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-$enderecoDigitado = explode('/',$dados_url['path'],2);
-$enderecoDigitado[1] = str_replace('.php', '', $enderecoDigitado[1]);
-
-ValidaRotas($enderecoDigitado);
-
 ?>
