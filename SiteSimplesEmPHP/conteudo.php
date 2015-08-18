@@ -1,14 +1,24 @@
+<?php    
+    $pagina = mostraPagina($param[1], $db);
+?>
+
 <body>
 
 <!-- Begin page content -->
 <div class="container">
     <div class="page-header">
-        <h1>Bem vindo !!!!</h1>
+        <h1><?php echo $pagina[0]->titulo; ?></h1>
     </div>
+    <?php
+    foreach ($pagina as $c) {
+    ?>
     <p class="lead">
-        Site de Exemplo em PHP usando BootStrap como ferramenta visual, espero que voce goste deste site! <br/>
-        Aqui estamos treinando conceitos de php em nivel básico, mas logo estaremos trabalhando com php avançado!
+        <?php echo $c->texto; ?> 
     </p>
+    
+    <?php
+	}
+    ?>
 
 </div>
 
